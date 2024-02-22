@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MainController!{% endblock %}
+
+{% block body %}
+{% for message in app.flashes('notice') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+{% endfor %}
+<table class="table">
+  <thead class="table-info">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">title</th>
+      <th scope="col">content</th>
+      {# <th scope="col">#</th> #}
+    </tr>
+  </thead>
+  {% for data in data %}
+  <tbody class="table-dark">
+    <tr>
+      <th scope="row">{{data.id}}</th>
+      <td>{{data.title}}</td>
+      <td>{{data.content}}</td>
+      <td><a class="btn btn-info mt-2 text-black" href="{{path('app_update',{'id': data.id})}}">modifier</a></td>
+      <td><a class="btn btn-info mt-2 text-black" href="{{path('app_delete',{'id': data.id})}}">supprimer</a></td>
+    </tr>
+  </tbody>
+{% endfor %}
+</table>
+<div class="form-group">
+    <a class="btn btn-info mt-2 text-black" href="{{path('app_create')}}">Ajoute tqt</a>
+</div>
+{% endblock %}
